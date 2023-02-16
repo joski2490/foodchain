@@ -232,8 +232,8 @@ templates.swarm = {
     perception: 300,
     steer: nearestTarget,
     toAvoid: ['swarm'],
-    toChase: ['fungus', 'pred', 'prey'],
-    toEat: ['fungus', 'pred', 'prey'],
+    toChase: ['fungus', 'pred', 'prey', 'food'],
+    toEat: ['fungus', 'pred', 'prey','food'],
     topSpeed: 8,
     onChase: function(e, newEntities) {
         if (random(5) >= 1) return;
@@ -276,8 +276,8 @@ templates.swarmer = {
     nutrition: 250,
     perception: 500,
     steer: nearestTarget,
-    toChase: ['fungus', 'pred', 'prey'],
-    toEat: ['fungus', 'pred', 'prey'],
+    toChase: ['fungus', 'pred', 'prey','food'],
+    toEat: ['fungus', 'pred', 'prey','food'],
     topSpeed: 12,
     onEatAttempt: function(e, newEntities) {
         this.vel.mult(0);
