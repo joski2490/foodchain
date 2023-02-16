@@ -130,8 +130,8 @@ templates.fungus = {
     nutrition: 500,
     perception: 10,
     radius: 10,
-    toChase: ['prey'],
-    toEat: ['prey'],
+    toChase: ['prey', 'pred'],
+    toEat: ['prey', 'pred'],
     topSpeed: 0,
     onEat: function(e, newEntities) {
         if (this.eat(e)) {
@@ -224,17 +224,17 @@ templates.prey = {
 };
 
 templates.swarm = {
-    accAmt: 0.4,
+    accAmt: 0.1,
     chasePriority: 4,
     color: [249, 191, 59],
     name: 'swarm',
     nutrition: 150,
-    perception: 75,
+    perception: 300,
     steer: nearestTarget,
     toAvoid: ['swarm'],
     toChase: ['fungus', 'pred', 'prey'],
     toEat: ['fungus', 'pred', 'prey'],
-    topSpeed: 4,
+    topSpeed: 8,
     onChase: function(e, newEntities) {
         if (random(5) >= 1) return;
         var x = this.pos.x + random(-20, 20);
