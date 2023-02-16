@@ -270,15 +270,15 @@ templates.swarm = {
 };
 
 templates.swarmer = {
-    accAmt: 0.4,
+    accAmt: 0.9,
     color: [249, 191, 59],
     name: 'swarmer',
-    nutrition: 25,
-    perception: 50,
+    nutrition: 250,
+    perception: 500,
     steer: nearestTarget,
     toChase: ['fungus', 'pred', 'prey'],
     toEat: ['fungus', 'pred', 'prey'],
-    topSpeed: 4,
+    topSpeed: 12,
     onEatAttempt: function(e, newEntities) {
         this.vel.mult(0);
         if (random(15) >= 1) return;
