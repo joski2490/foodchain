@@ -131,7 +131,7 @@ templates.fungus = {
     perception: 10,
     radius: 10,
     toChase: ['prey', 'pred'],
-    toEat: ['prey', 'pred'],
+    toEat: ['prey', 'pred', 'swarm'],
     topSpeed: 0,
     onEat: function(e, newEntities) {
         if (this.eat(e)) {
@@ -152,7 +152,7 @@ templates.hive = {
     color: [54, 215, 183],
     name: 'hive',
     nutrition: 500,
-    perception: 100,
+    perception: 70,
     radius: 30,
     steer: nearestTarget,
     toChase: ['fungus', 'pred', 'prey'],
@@ -174,12 +174,12 @@ templates.pred = {
     color: [207, 0, 15],
     name: 'pred',
     nutrition: 200,
-    perception: 150,
+    perception: 50,
     radius: 12,
     steer: multiTarget,
     toAvoid: ['pred', 'swarm'],
-    toChase: ['prey'],
-    toEat: ['prey'],
+    toChase: ['prey', 'hive'],
+    toEat: ['prey','hive'],
     topSpeed: 4,
     onDeath: function(newEntities) {
         if (random(3) >= 2) return;
@@ -210,10 +210,10 @@ templates.prey = {
     nutrition: 400,
     perception: 100,
     radius: 8,
-    steer: nearestTarget,
+    steer: nearestTarget * 4,
     toChase: ['food'],
     toEat: ['food'],
-    topSpeed: 3,
+    topSpeed: 6,
     onEat: function(e, newEntities) {
         if (this.eat(e)) {
             var x = this.pos.x + random(-20, 20);
