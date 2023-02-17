@@ -130,7 +130,8 @@ templates.fungus = {
     nutrition: 100,
     perception: 100,
     steer: multiTarget,
-    radius: 3
+    radius: 3,
+    tVel: 1,
     toChase: ['prey', 'pred'],
     toEat: ['prey', 'pred', 'swarm'],
     topSpeed: 0,
@@ -156,6 +157,7 @@ templates.hive = {
     perception: 60,
     radius: 6,
     steer: nearestTarget,
+    tVel: 3,
     toChase: ['fungus', 'pred', 'prey'],
     topSpeed: 2,
     onChase: function(e, newEntities) {
