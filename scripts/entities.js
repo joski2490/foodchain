@@ -46,7 +46,7 @@ function nearestTarget(entities, newEntities) {
                 line(e.pos.x, e.pos.y, this.pos.x, this.pos.y);
             }
             this.onChase(e, newEntities);
-            sum.add(this.target(e, this.chasePriority * this.tVel));
+            sum.add(this.target(e, cos(this.chasePriority * this.tVel - this.vel)));
         }
     }
 
@@ -64,7 +64,7 @@ function nearestTarget(entities, newEntities) {
             line(e.pos.x, e.pos.y, this.pos.x, this.pos.y);
         }
         this.onAvoid(e, newEntities);
-        sum.add(this.target(e, this.avoidPriority * -1*this.tVel));
+        sum.add(this.target(e, cosh(this.avoidPriority * -1 * this.tVel - this.vel)));
     }
     
     return sum;
@@ -87,7 +87,7 @@ function multiTarget(entities, newEntities) {
             line(e.pos.x, e.pos.y, this.pos.x, this.pos.y);
         }
         this.onChase(e, newEntities);
-        sum.add(this.target(e, this.chasePriority*this.tVel));
+        sum.add(this.target(e, cos(this.chasePriority * this.tVel - this.vel)));
     }
 
     // Avoidance
@@ -104,7 +104,7 @@ function multiTarget(entities, newEntities) {
             line(e.pos.x, e.pos.y, this.pos.x, this.pos.y);
         }
         this.onAvoid(e, newEntities);
-        sum.add(this.target(e, this.avoidPriority * -1*this.tVel));
+        sum.add(this.target(e, cosh(this.avoidPriority * -1*this.tVel - this.vel)));
     }
 
     return sum;
