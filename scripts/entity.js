@@ -52,7 +52,7 @@ class Entity {
 
         // Do not draw entity on line mode
         if (!lineMode) {
-            ellipse(this.pos.x, this.pos.y, this.radius * 4, this.radius * 4);
+            ellipse(this.pos.x, this.pos.y, this.radius * 2, this.radius * 2);
         }
     }
 
