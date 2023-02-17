@@ -46,7 +46,7 @@ function nearestTarget(entities, newEntities) {
                 line(e.pos.x, e.pos.y, this.pos.x, this.pos.y);
             }
             this.onChase(e, newEntities);
-            sum.add(this.target(e, this.chasePriority / this.tVel));
+            sum.add(this.target(e, this.chasePriority ** this.tVel));
         }
     }
 
@@ -64,7 +64,7 @@ function nearestTarget(entities, newEntities) {
             line(e.pos.x, e.pos.y, this.pos.x, this.pos.y);
         }
         this.onAvoid(e, newEntities);
-        sum.add(this.target(e, this.avoidPriority / this.tVel * -1));
+        sum.add(this.target(e, this.avoidPriority ** this.tVel * -1));
     }
     
     return sum;
@@ -87,7 +87,7 @@ function multiTarget(entities, newEntities) {
             line(e.pos.x, e.pos.y, this.pos.x, this.pos.y);
         }
         this.onChase(e, newEntities);
-        sum.add(this.target(e, this.chasePriority / this.tVel));
+        sum.add(this.target(e, this.chasePriority ** this.tVel));
     }
 
     // Avoidance
@@ -104,7 +104,7 @@ function multiTarget(entities, newEntities) {
             line(e.pos.x, e.pos.y, this.pos.x, this.pos.y);
         }
         this.onAvoid(e, newEntities);
-        sum.add(this.target(e, this.avoidPriority / this.tVel * -1));
+        sum.add(this.target(e, this.avoidPriority ** this.tVel * -1));
     }
 
     return sum;
@@ -128,8 +128,8 @@ templates.fungus = {
     accAmt: 0,
     color: [102, 51, 153],
     name: 'fungus',
-    nutrition: 1000,
-    perception: 1000,
+    nutrition: 10000,
+    perception: 10000,
     avoidPriority: 0.8,
     chasePriority: 1.5,
    // steer: multiTarget,
@@ -156,8 +156,8 @@ templates.hive = {
     accAmt: 0.1,
     color: [54, 215, 183],
     name: 'hive',
-    nutrition: 5000,
-    perception: 600,
+    nutrition: 50000,
+    perception: 6000,
     radius: 6,
     avoidPriority: 2.0,
     steer: nearestTarget,
@@ -180,8 +180,8 @@ templates.pred = {
     chasePriority: 4,
     color: [207, 0, 15],
     name: 'pred',
-    nutrition: 3000,
-    perception: 400,
+    nutrition: 30000,
+    perception: 4000,
     radius: 4,
     steer: multiTarget,
     toAvoid: ['pred', 'swarm'],
@@ -215,8 +215,8 @@ templates.prey = {
     chasePriority: 2,
     color: [82, 179, 217],
     name: 'prey',
-    nutrition: 4000,
-    perception: 100,
+    nutrition: 40000,
+    perception: 1000,
     radius: 2,
     steer: nearestTarget,
     toChase: ['food'],
@@ -239,8 +239,8 @@ templates.swarm = {
     avoidPriority: 8,
     color: [249, 191, 59],
     name: 'swarm',
-    nutrition: 1500,
-    perception: 300,
+    nutrition: 15000,
+    perception: 3000,
     steer: nearestTarget,
     toAvoid: ['swarm'],
     toChase: ['fungus', 'pred', 'prey', 'food'],
@@ -286,8 +286,8 @@ templates.swarmer = {
     radius: 1,
     color: [249, 191, 59],
     name: 'swarmer',
-    nutrition: 2500,
-    perception: 500,
+    nutrition: 25000,
+    perception: 5000,
     steer: nearestTarget,
     toChase: ['fungus', 'pred', 'prey','food'],
     toEat: ['fungus', 'pred', 'prey','food'],
