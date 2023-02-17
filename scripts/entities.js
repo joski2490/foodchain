@@ -160,6 +160,7 @@ templates.hive = {
     perception: 6000,
     radius: 6,
     avoidPriority: 2.0,
+    chasePriority: 0.5,
     steer: nearestTarget,
     tVel: 3,
     toChase: ['fungus', 'pred', 'prey'],
