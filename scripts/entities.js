@@ -215,7 +215,7 @@ templates.prey = {
     toChase: ['food'],
     toEat: ['food'],
     topSpeed: 6,
-    tVel: 0.1,
+    tVel: 12,
     onEat: function(e, newEntities) {
         if (this.eat(e)) {
             var x = this.pos.x + random(-20, 20);
