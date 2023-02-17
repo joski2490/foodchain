@@ -212,7 +212,7 @@ function draw() {
     if (total <= 0 || total > 1200 || numDynamic === 0) initEntities();
 
     // Randomly spawn food on map
-    if (random(5) < 1) {
+    if (random(5) < 3) {
         var x = random(width);
         var y = random(height);
         entities.push(createEntity(x, y, templates.food));
