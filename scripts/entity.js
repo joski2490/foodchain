@@ -52,7 +52,7 @@ class Entity {
 
         // Do not draw entity on line mode
         if (!lineMode) {
-            ellipse(this.pos.x, this.pos.y, this.radius * 2, this.radius * 2);
+            ellipse(this.pos.x, this.pos.y, this.radius * 1, this.radius * 1);
         }
     }
 
@@ -71,7 +71,7 @@ class Entity {
     }
 
     getNearest(entities) {
-        var lowestDist = 10000;
+        var lowestDist = 1000000;
         var e = entities[0];
         for (var i = 0; i < entities.length; i++) {
             var dist = entities[i].pos.dist(this.pos);
