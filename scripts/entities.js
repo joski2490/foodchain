@@ -117,6 +117,7 @@ var templates = {};
 
 templates.food = {
     accAmt: 0,
+    radius: 2,
     color: [135, 211, 124],
     name: 'food',
     topSpeed: 0,
