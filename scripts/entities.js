@@ -46,7 +46,7 @@ function nearestTarget(entities, newEntities) {
                 line(e.pos.x, e.pos.y, this.pos.x, this.pos.y);
             }
             this.onChase(e, newEntities);
-            sum.add(this.target(e, this.chasePriority));
+            sum.add(this.target(e, this.chasePriority)) * this.tVel;
         }
     }
 
@@ -64,7 +64,7 @@ function nearestTarget(entities, newEntities) {
             line(e.pos.x, e.pos.y, this.pos.x, this.pos.y);
         }
         this.onAvoid(e, newEntities);
-        sum.add(this.target(e, this.avoidPriority * -1));
+        sum.add(this.target(e, this.avoidPriority * -1))*this.tVel;
     }
     
     return sum;
@@ -87,7 +87,7 @@ function multiTarget(entities, newEntities) {
             line(e.pos.x, e.pos.y, this.pos.x, this.pos.y);
         }
         this.onChase(e, newEntities);
-        sum.add(this.target(e, this.chasePriority));
+        sum.add(this.target(e, this.chasePriority))*this.tVel;
     }
 
     // Avoidance
@@ -104,7 +104,7 @@ function multiTarget(entities, newEntities) {
             line(e.pos.x, e.pos.y, this.pos.x, this.pos.y);
         }
         this.onAvoid(e, newEntities);
-        sum.add(this.target(e, this.avoidPriority * -1));
+        sum.add(this.target(e, this.avoidPriority * -1))*this.tVel;
     }
 
     return sum;
@@ -181,6 +181,7 @@ templates.pred = {
     toChase: ['prey', 'hive'],
     toEat: ['prey','hive'],
     topSpeed: 4,
+    tVel: 4,
     onDeath: function(newEntities) {
         if (random(3) >= 2) return;
         var x = this.pos.x;
@@ -210,10 +211,11 @@ templates.prey = {
     nutrition: 400,
     perception: 100,
     radius: 8,
-    steer: nearestTarget * 4,
+    steer: nearestTarget,
     toChase: ['food'],
     toEat: ['food'],
     topSpeed: 6,
+    tVel: 2,
     onEat: function(e, newEntities) {
         if (this.eat(e)) {
             var x = this.pos.x + random(-20, 20);
@@ -235,6 +237,7 @@ templates.swarm = {
     toChase: ['fungus', 'pred', 'prey', 'food'],
     toEat: ['fungus', 'pred', 'prey','food'],
     topSpeed: 8,
+    tVel: 0.1,
     onChase: function(e, newEntities) {
         if (random(5) >= 1) return;
         var x = this.pos.x + random(-20, 20);
@@ -279,6 +282,7 @@ templates.swarmer = {
     toChase: ['fungus', 'pred', 'prey','food'],
     toEat: ['fungus', 'pred', 'prey','food'],
     topSpeed: 12,
+    tVel: 0.5,
     onEatAttempt: function(e, newEntities) {
         this.vel.mult(0);
         if (random(15) >= 1) return;
