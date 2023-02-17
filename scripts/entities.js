@@ -26,7 +26,7 @@ function createEntity(x, y, template) {
     return e;
 }
 
-
+//
 // Steering functions
 
 function nearestTarget(entities, newEntities) {
