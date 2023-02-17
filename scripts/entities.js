@@ -127,9 +127,10 @@ templates.fungus = {
     accAmt: 0,
     color: [102, 51, 153],
     name: 'fungus',
-    nutrition: 500,
-    perception: 10,
-    radius: 10,
+    nutrition: 100,
+    perception: 100,
+    steer: multiTarget,
+    radius: 3
     toChase: ['prey', 'pred'],
     toEat: ['prey', 'pred', 'swarm'],
     topSpeed: 0,
@@ -148,15 +149,15 @@ templates.fungus = {
 }
 
 templates.hive = {
-    accAmt: 0,
+    accAmt: 0.1,
     color: [54, 215, 183],
     name: 'hive',
     nutrition: 500,
-    perception: 70,
-    radius: 30,
+    perception: 60,
+    radius: 6,
     steer: nearestTarget,
     toChase: ['fungus', 'pred', 'prey'],
-    topSpeed: 0,
+    topSpeed: 2,
     onChase: function(e, newEntities) {
         if (random(15) >= 1) return;
         var x = this.pos.x + random(-20, 20);
@@ -173,9 +174,9 @@ templates.pred = {
     chasePriority: 4,
     color: [207, 0, 15],
     name: 'pred',
-    nutrition: 200,
-    perception: 50,
-    radius: 12,
+    nutrition: 300,
+    perception: 40,
+    radius: 4,
     steer: multiTarget,
     toAvoid: ['pred', 'swarm'],
     toChase: ['prey', 'hive'],
@@ -204,18 +205,18 @@ templates.pred = {
 };
 
 templates.prey = {
-    accAmt: 0.5,
+    accAmt: 0.3,
     chasePriority: 2,
     color: [82, 179, 217],
     name: 'prey',
     nutrition: 400,
-    perception: 100,
-    radius: 8,
+    perception: 10,
+    radius: 2,
     steer: nearestTarget,
     toChase: ['food'],
     toEat: ['food'],
-    topSpeed: 6,
-    tVel: 12,
+    topSpeed: 4,
+    tVel: -12,
     onEat: function(e, newEntities) {
         if (this.eat(e)) {
             var x = this.pos.x + random(-20, 20);
@@ -227,12 +228,13 @@ templates.prey = {
 
 templates.swarm = {
     accAmt: 0.1,
+    radius: 1,
     chasePriority: 4,
     color: [249, 191, 59],
     name: 'swarm',
     nutrition: 150,
     perception: 300,
-    steer: nearestTarget,
+    steer: multiTarget,
     toAvoid: ['swarm'],
     toChase: ['fungus', 'pred', 'prey', 'food'],
     toEat: ['fungus', 'pred', 'prey','food'],
@@ -274,11 +276,12 @@ templates.swarm = {
 
 templates.swarmer = {
     accAmt: 0.9,
+    radius: 1,
     color: [249, 191, 59],
     name: 'swarmer',
     nutrition: 250,
     perception: 500,
-    steer: nearestTarget,
+    steer: multiTarget,
     toChase: ['fungus', 'pred', 'prey','food'],
     toEat: ['fungus', 'pred', 'prey','food'],
     topSpeed: 12,
