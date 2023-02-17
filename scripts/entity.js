@@ -24,6 +24,7 @@ class Entity {
         this.alive = true;
         this.name = 'entity';
         this.template = {};
+        this.tVel = 0.99;
     }
 
     applyForce(f) {
